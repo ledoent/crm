@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Ledo Enterprises
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!-- Shipped inactive: activate it if it fits your pipeline. -->
+    <record id="rule_lead_email" model="deduplicate.rule">
+        <field name="name">Leads with the same e-mail</field>
+        <field name="res_model_id" ref="crm.model_crm_lead" />
+        <field name="active" eval="False" />
+        <field name="domain">[('type', '=', 'lead')]</field>
+        <field
+            name="line_ids"
+            eval="[(0, 0, {'field_id': ref('crm.field_crm_lead__email_from'), 'match_mode': 'email'})]"
+        />
+    </record>
+</odoo>
